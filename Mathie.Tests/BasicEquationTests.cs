@@ -1,3 +1,4 @@
+using Mathie.Models;
 using MathParserNet;
 using NUnit.Framework;
 
@@ -59,19 +60,17 @@ namespace Mathie.Tests {
 			Assert.True(Solve("(2^3)^2=60+4"));
 		}
 
+		[Test]
+		public void should_unary_minus_work() {
+			Assert.True(Solve("-3+4^2=6+5+2"));
+		}
+
 		private static bool Solve(string equation) {
-			if (string.IsNullOrWhiteSpace(equation))
+			var solver = new EquationSolver();
+			if (!solver.IsInCorrectFormat(equation))
 				return false;
 
-			if (!equation.Contains("=") ||
-			    equation.StartsWith("=") ||
-			    equation.EndsWith("="))
-				return false;
-
-			equation = equation.Replace("=", "-(") + ")";
-			var parser = new Parser();
-			var result = parser.Simplify(equation);
-			return result.IntValue == 0;
+			return solver.Solve(equation);
 		}
 	}
 }
