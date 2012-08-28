@@ -14,9 +14,11 @@ namespace Mathie.Controllers {
 			var solver = new EquationSolver();
 			if (solver.IsInCorrectFormat(equation)) {
 				if (solver.Solve(equation)) {
-					return RedirectToAction("Index");
+					ViewData["Message"] = "Well done :)";
 				}
-				ViewData["Message"] = "Format error - try again!";
+				else {
+					ViewData["Message"] = "Format error - try again!";
+				}
 				return View();
 			}
 			ViewData["Message"] = "Sides not equal - try again!";
@@ -24,7 +26,7 @@ namespace Mathie.Controllers {
 		}
 
 		private string GetRandomNumber() {
-			return 342652.ToString();
+			return 342652.ToString("0  0  0 = 0  0  0");
 		}
 	}
 }
