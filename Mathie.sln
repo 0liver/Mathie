@@ -3,6 +3,8 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathie.Web", "Mathie.Web\Mathie.Web.csproj", "{DD9572A8-12C8-43DB-8DB0-6D7C97DB8937}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Mathie.Tests", "Mathie.Tests\Mathie.Tests.csproj", "{59F634B2-CAAD-4402-9D23-9610E42594E5}"
+EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
 		CategoryFile = Mathie.vsmdi
@@ -16,6 +18,10 @@ Global
 		{DD9572A8-12C8-43DB-8DB0-6D7C97DB8937}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{DD9572A8-12C8-43DB-8DB0-6D7C97DB8937}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DD9572A8-12C8-43DB-8DB0-6D7C97DB8937}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59F634B2-CAAD-4402-9D23-9610E42594E5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59F634B2-CAAD-4402-9D23-9610E42594E5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59F634B2-CAAD-4402-9D23-9610E42594E5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59F634B2-CAAD-4402-9D23-9610E42594E5}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
