@@ -27,7 +27,7 @@ namespace Mathie.Models {
 				equation.EndsWith("="))
 				return false;
 
-			equation = equation.Replace("=", "-(") + ")";
+			equation = equation.Replace(" ", "").Replace("=", "-(") + ")";
 			var parser = new Parser();
 			var result = parser.Simplify(equation);
 			return result.IntValue == 0;

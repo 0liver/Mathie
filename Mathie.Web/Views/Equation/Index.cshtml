@@ -9,6 +9,7 @@
   {
     @Html.TextBox("equation", Model)
     <button type="submit" value="submit">Submit</button>
-    <span>@ViewData["Message"]</span>
+    <p>@ViewData["Message"]</p>
+    <p>@Html.ActionLink("Riddle again!","Index")</p>
   }
 </div>

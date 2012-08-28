@@ -1,4 +1,6 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Linq;
+using System.Web.Mvc;
 using Mathie.Models;
 
 namespace Mathie.Controllers {
@@ -26,7 +28,12 @@ namespace Mathie.Controllers {
 		}
 
 		private string GetRandomNumber() {
-			return 342652.ToString("0  0  0 = 0  0  0");
+			var equationBase = "00";
+			while (equationBase.Count(c => c == '0') >= 2) {
+				var number = new Random().Next(1, 1000000);
+				equationBase = number.ToString("0  0  0 = 0  0  0");
+			}
+			return equationBase;
 		}
 	}
 }

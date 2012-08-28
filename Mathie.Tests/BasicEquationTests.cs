@@ -65,6 +65,11 @@ namespace Mathie.Tests {
 			Assert.True(Solve("-3+4^2=6+5+2"));
 		}
 
+		[Test]
+		public void should_numbers_with_spaces_work() {
+			Assert.True(Solve("1 * 6 + 8 = 0 + 1  4"));
+		}
+
 		private static bool Solve(string equation) {
 			var solver = new EquationSolver();
 			if (!solver.IsInCorrectFormat(equation))
