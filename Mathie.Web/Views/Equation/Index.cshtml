@@ -1,0 +1,14 @@
+﻿@model string
+@{
+  ViewBag.Title = "Have some mathie fun :)";
+}
+<div align="center">
+  <h2>Get the equation to work</h2>
+  <p>Use these characters: ( ) ^ * / % + - and one = sign</p>
+  @using (Html.BeginForm())
+  {
+    @Html.TextBox("equation", Model)
+    <button type="submit" value="submit">Submit</button>
+    <span>@ViewData["Message"]</span>
+  }
+</div>
