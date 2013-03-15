@@ -1,5 +1,4 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using MathParserNet;
 
 namespace Mathie.Models {
@@ -9,23 +8,19 @@ namespace Mathie.Models {
 				return false;
 			}
 
-			if (equation.StartsWith("=") ||
-				equation.EndsWith("=") ||
-				equation.Count(c => c == '=') != 1) {
-				return false;
+			if (!equation.StartsWith("=") &&
+			    !equation.EndsWith("=") &&
+			    equation.Count(c => c == '=') == 1) {
+				return true;
 			}
 
-			return true;
+			return false;
 		}
 
 		public bool Solve(string equation) {
-			if (string.IsNullOrWhiteSpace(equation))
+			if (!IsInCorrectFormat(equation)) {
 				return false;
-
-			if (!equation.Contains("=") ||
-				equation.StartsWith("=") ||
-				equation.EndsWith("="))
-				return false;
+			}
 
 			equation = equation.Replace(" ", "").Replace("=", "-(") + ")";
 			var parser = new Parser();
