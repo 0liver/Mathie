@@ -13,6 +13,8 @@ namespace Mathie
 		{
 			routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
+			routes.MapRoute("", "tt/{name}-{id}", new { controller = "Equation", action = "Test", id = UrlParameter.Optional });
+
 			routes.MapRoute(
 				name: "Default",
 				url: "{controller}/{action}/{id}",

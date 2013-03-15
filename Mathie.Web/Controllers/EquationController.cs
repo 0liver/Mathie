@@ -35,5 +35,9 @@ namespace Mathie.Controllers {
 			}
 			return equationBase;
 		}
+
+		public string Test(string name, int? id) {
+			return string.Format("Name: '{0}', Id: {1}", Server.HtmlEncode(name), id);
+		}
 	}
 }
