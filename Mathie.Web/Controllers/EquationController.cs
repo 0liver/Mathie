@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 using System.Web.Mvc;
 using Mathie.Models;
 
@@ -7,33 +6,31 @@ namespace Mathie.Controllers {
 	public class EquationController : Controller {
 		[HttpGet]
 		public ActionResult Index() {
-			var randomNumber = GetRandomNumber();
-			return View((object) randomNumber);
+			var randomString = new EquationGenerator(new DotNetRandomNumberGenerator()).GetEquation();
+			var resultViewModel = new ResultViewModel { Equation = randomString, Solution = randomString };
+			return View(resultViewModel);
 		}
 
 		[HttpPost]
-		public ActionResult Index(string equation) {
+		public ActionResult Index(SolutionViewModel solutionViewModel) {
+			var resultViewModel = new ResultViewModel();
 			var solver = new EquationSolver();
-			if (solver.IsInCorrectFormat(equation)) {
-				if (solver.Solve(equation)) {
-					ViewData["Message"] = "Well done :)";
+			if (solver.IsInCorrectFormat(solutionViewModel.Solution)) {
+				if (solver.Solve(solutionViewModel.Solution)) {
+					resultViewModel.HasSolution = true;
+					resultViewModel.Message = "Well done :) ";
+					resultViewModel.Time = TimeSpan.FromSeconds(solutionViewModel.Duration);
+					resultViewModel.Equation = solutionViewModel.Equation;
+					resultViewModel.Solution = solver.Format(solutionViewModel.Solution);
 				}
 				else {
-					ViewData["Message"] = "Format error - try again!";
+					resultViewModel.Message = "Sides not equal - try again!";
 				}
-				return View();
 			}
-			ViewData["Message"] = "Sides not equal - try again!";
-			return View();
-		}
-
-		private string GetRandomNumber() {
-			var equationBase = "00";
-			while (equationBase.Count(c => c == '0') >= 2) {
-				var number = new Random().Next(1, 1000000);
-				equationBase = number.ToString("0  0  0 = 0  0  0");
+			else {
+				resultViewModel.Message = "Format error - try again!";
 			}
-			return equationBase;
+			return View(resultViewModel);
 		}
 
 		public string Test(string name, int? id) {

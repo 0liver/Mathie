@@ -1,15 +1,65 @@
-﻿@model string
+﻿@model Mathie.Models.ResultViewModel
 @{
-  ViewBag.Title = "Have some mathie fun :)";
+    ViewBag.Title = "Have some mathie fun :)";
+    Html.EnableUnobtrusiveJavaScript(true);
 }
 <div align="center">
-  <h2>Get the equation to work</h2>
-  <p>Use these characters: ( ) ^ * / % + - and one = sign</p>
-  @using (Html.BeginForm())
-  {
-    @Html.TextBox("equation", Model)
-    <button type="submit" value="submit">Submit</button>
-    <p>@ViewData["Message"]</p>
-    <p>@Html.ActionLink("Riddle again!","Index")</p>
-  }
+    <h2>Get the equation to work</h2>
+    <p>Use these operators:<br />
+        ( ) ^ * / % + -
+        <br />
+        and one = sign</p>
+    @using (Html.BeginForm())
+    {
+        <p>
+            @Html.TextBoxFor(m => m.Solution, new { @class = "huge" })
+            @Html.HiddenFor(m => m.Equation)
+        </p>
+        <p><span id="time" data-time="0">00:00:00</span>
+            <button type="submit" value="submit">Submit</button>
+        </p>
+        <p class="info">@Model.Message</p>
+        <p>@Html.ActionLink("Riddle again!", "Index")</p>
+        <input type="hidden" id="Duration" name="Duration" />
+    }
 </div>
+<aside>
+    @if (Model.HasSolution)
+    {
+        <div class="solution">Solved <span class="equation">@Model.Equation</span> with <span class="equation">@Model.Solution</span> in <span>@Model.Time.Value.ToString(@"hh\:mm\:ss")</span></div>
+    }
+</aside>
+@section scripts {
+    <script>
+        $(function () {
+            var loadTime = Date.now();
+
+            var pad = function (val, len) {
+                val = String(val);
+                len = len || 2;
+                while (val.length < len) val = "0" + val;
+                return val;
+            };
+
+            function format(seconds) {
+                var tmp = new Date(1970, 0, 1, 0, 0, seconds * 1);
+                return pad(tmp.getHours()) + ':' + pad(tmp.getMinutes()) + ':' + pad(tmp.getSeconds());
+            }
+
+            function updateTime() {
+                var $time = $('#time'),
+                    old = $time.data('time') * 1,
+                    str = format(old + 1);
+                $time.data('time', old + 1).text(str);
+            }
+
+            setInterval(updateTime, 1000);
+
+            $('form').on('submit', function () {
+                var currentTime = Date.now();
+                duration = $('#time').data('time') * 1; //currentTime - loadTime;
+                $('#Duration').val(duration);
+            })
+        });
+    </script>
+}

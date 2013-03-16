@@ -129,7 +129,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DotNetRandomNumberGenerator.cs" />
+    <Compile Include="Models\EquationGenerator.cs" />
     <Compile Include="Models\EquationSolver.cs" />
+    <Compile Include="Models\IEquationGenerator.cs" />
+    <Compile Include="Models\IEquationSolver.cs" />
+    <Compile Include="Models\IRandomNumberGenerator.cs" />
+    <Compile Include="Models\ResultViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

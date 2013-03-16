@@ -54,6 +54,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BasicEquationTests.cs" />
+    <Compile Include="EquationFormatTest.cs" />
+    <Compile Include="EquationGeneratorTest.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

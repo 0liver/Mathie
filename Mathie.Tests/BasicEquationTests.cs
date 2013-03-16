@@ -1,5 +1,4 @@
 using Mathie.Models;
-using MathParserNet;
 using NUnit.Framework;
 
 namespace Mathie.Tests {
@@ -68,6 +67,7 @@ namespace Mathie.Tests {
 		[Test]
 		public void should_numbers_with_spaces_work() {
 			Assert.True(Solve("1 * 6 + 8 = 0 + 1  4"));
+			Assert.True(Solve("3  +1  5 = 5+  8+  5"));
 		}
 
 		private static bool Solve(string equation) {
